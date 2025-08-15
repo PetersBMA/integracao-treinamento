@@ -1,15 +1,11 @@
-// config.js
 module.exports = {
     smtp: {
-        // Para ambiente de treinamento, você pode usar ethereal.email ou configurar seu próprio SMTP.
-        // Em produção, use variáveis de ambiente para segurança (process.env.SMTP_HOST, etc.).
-        host: 'smtp.gmail.com', // Exemplo: 'smtp.gmail.com'
-        port: 465,                   // Porta SMTP. 465 para SSL, 587 para TLS/STARTTLS.
-        secure: true,               // true para porta 465 (SSL), false para outras (TLS/STARTTLS)
+        host: process.env.SMTP_HOST || 'default_host_for_local_dev',
+        port: parseInt(process.env.SMTP_PORT || '587'),
+        secure: process.env.SMTP_SECURE === 'true',
         auth: {
-            user: 'thiagopetersbma@gmail.com', // **Substitua pelo seu e-mail/usuário**
-            pass: 'tmce mcis rdjy kiis'     // **Substitua pela sua senha de app/token**
+            user: process.env.SMTP_USER || 'default_user_for_local_dev',
+            pass: process.env.SMTP_PASS || 'default_pass_for_local_dev'
         }
     }
-    // Outras configurações futuras podem ser adicionadas aqui
 };
